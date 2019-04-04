@@ -1,0 +1,29 @@
+{
+  "name": "node-ldap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "hapi": "^18.1.0",
+    "inert": "^5.1.2",
+    "ldapjs": "^1.0.2",
+    "micromodal": "^0.3.2",
+    "popups": "^1.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martmota98/node_ldap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martmota98/node_ldap/issues"
+  },
+  "homepage": "https://github.com/martmota98/node_ldap#readme"
+}
