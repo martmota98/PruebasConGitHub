@@ -1,9 +1,6 @@
 #! /bin/bash
 echo "***************************************************************************************************************************************************************************************************************";
-UPSTREAM=${1:-'@{u}'}
-LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse "$UPSTREAM")
-BASE=$(git merge-base @ "$UPSTREAM")
+
 
 DIA=`date +"%d/%m/%Y"`
 HORA=`date +"%H:%M"`
@@ -11,17 +8,23 @@ echo "Dia: $DIA Hora: $HORA"
 echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
 
-if [ $LOCAL = $REMOTE ]; then
-    echo "SIN ACTUALIZACIONES"
-elif [ $LOCAL = $BASE ]; then
-git pull && 
-echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+UPSTREAM=${1:-'@{u}'}
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @ @{u})
 
-/usr/local/bin/pm2 reload /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js &&
-echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-/usr/local/bin/pm2 l
+echo $LOCAL
+echo $REMOTE
+echo $BASE
+echo $UPSTREAM
+if [ $LOCAL = $REMOTE ]; then
+    echo "Up-to-date"
+elif [ $LOCAL = $BASE ]; then
+    echo "Need to pull"
+elif [ $REMOTE = $BASE ]; then
+    echo "Need to push"
 else
-echo "ERROR"
+    echo "Diverged"
 fi
 echo "***************************************************************************************************************************************************************************************************************"
 
