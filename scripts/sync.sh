@@ -5,21 +5,14 @@ HORA=`date +"%H:%M"`
 echo "Dia: $DIA Hora: $HORA"
 echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
-estado=$(git pull)
-echo = "Estado: $estado"
-if ["$estado" = "Ya está actualizado."]
+estado=$(git pull -q)
+if ["$estado" = '']
 then
 echo "SIN ACTUALIZACIONES"
 else
 echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-/usr/local/bin/pm2 stop /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js &&
-echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-
-cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
-git pull &&
-echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
-
-/usr/local/bin/pm2 start /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js ;
+/usr/local/bin/pm2 reload /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js &&
+/usr/local/bin/pm2 l
 fi
 echo "***************************************************************************************************************************************************************************************************************"
 
