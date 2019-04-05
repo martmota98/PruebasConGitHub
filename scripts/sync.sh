@@ -1,6 +1,24 @@
 #! /bin/bash
- /usr/local/bin/pm2 stop /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js
- cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && git pull
- /usr/local/bin/pm2 start /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js
+echo "***************************************************************************************************************************************************************************************************************";
+DIA=`date +"%d/%m/%Y"`
+HORA=`date +"%H:%M"`
+echo "Dia: $DIA Hora: $HORA"
+echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
+if git status -s = 0  
+then
+echo "SIN ACTUALIZACIONES"
+else
+echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+/usr/local/bin/pm2 stop /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js &&
+echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+
+cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
+git pull &&
+echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+
+/usr/local/bin/pm2 start /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js ;
+fi
+echo "***************************************************************************************************************************************************************************************************************"
 
 
