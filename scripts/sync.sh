@@ -5,9 +5,9 @@ HORA=`date +"%H:%M"`
 echo "Dia: $DIA Hora: $HORA"
 echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
-estado=$(git status )
+estado=$( git pull )
 
-if ["$estado" = 'Ya está actualizado.']
+if [ "$estado" = 'Ya está actualizado.' ]
 then
 echo "SIN ACTUALIZACIONES"
 else
