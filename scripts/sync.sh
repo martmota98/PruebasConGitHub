@@ -7,25 +7,22 @@ HORA=`date +"%H:%M"`
 echo "Dia: $DIA Hora: $HORA"
 echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
-
+git remote update &&
 UPSTREAM=${1:-'@{u}'}
 LOCAL=$(git rev-parse @)
-REMOTE=$(git rev-parse @{u})
-BASE=$(git merge-base @ @{u})
+REMOTE=$(git rev-parse "$UPSTREAM")
+BASE=$(git merge-base @ "$UPSTREAM")
 
-echo $LOCAL
-echo $REMOTE
-echo $BASE
-echo $UPSTREAM
 if [ $LOCAL = $REMOTE ]; then
-    echo "Up-to-date"
+    echo "SIN ACTUALIZACIONES"
 elif [ $LOCAL = $BASE ]; then
-    echo "Need to pull"
-elif [ $REMOTE = $BASE ]; then
-    echo "Need to push"
+git pull exit 1&& 
+echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+/usr/local/bin/pm2 reload /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub/serv.js &&
+echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+/usr/local/bin/pm2 l
 else
-    echo "Diverged"
+echo "ERROR"
 fi
 echo "***************************************************************************************************************************************************************************************************************"
-
 
