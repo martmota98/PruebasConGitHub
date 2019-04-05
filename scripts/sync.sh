@@ -5,7 +5,7 @@ HORA=`date +"%H:%M"`
 echo "Dia: $DIA Hora: $HORA"
 echo "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 cd  /home/usuario/Escritorio/Cliente_PruebasConGit/PruebasConGitHub && 
- estado=$(git status -s)
+ estado=$(git fetch origin)
 echo "estado=$estado"
 if [$estado = '']
 then
